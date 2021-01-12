@@ -1,0 +1,11 @@
+Everything in this folder is to be printed ONCE.
+3 perimiters
+20% infill
+PETG at 0,2mm layer height
+
+all axis_front_bracket and axis_motor_bracket are designed to be printed with the "flat"
+side down. These models take two M5 x 10mm bolts and t-slot nuts. Perpendicular to these bolts is an "ear"
+made for a M6 x 50mm bolt that threads (after tapping) into the square section of the 20 x 20mm aluminum extrusion
+
+This "ear" should be printed at 100% infill for all bracket parts, if your slicer has the option to add custom infill (such as PE slicer)
+If this is not possible, add 3 top layers to the model, increase perimiters to 4 and infill to 25% for the whole model.

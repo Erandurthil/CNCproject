@@ -1,0 +1,7 @@
+6,35-8mm_leadscrew_motor_coupler
+4 perimiters
+100% infill
+PETG at 0,2mm layer height
+
+If you cant find 6.35 to 8mm motor couplers with OD 20mm this is an alternative that works well.
+More perimiters will increase the strengh of the print. 
