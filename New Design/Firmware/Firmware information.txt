@@ -1,0 +1,58 @@
+Before we install all firmware, we need to understand the workflow that Most CNC machines use.
+
+Workflow:
+
+(CAD) --> ((CAM) --> (Post processor)) --> (exported Thingname.nc file) --> (Gcode sender) --> (CNC machine)
+
+The workflow require 3-4 different firmwares. here follows a good workflow setup:
+
+   Fusion 360 / EstlCAM 		-->		Pronterface			-->		CNC machine		
+(CAD and CAM with Post processor)		(Used to send the gcode	 			(executes gcode commands)
+						file to the CNC machine)
+Lets work backwards:
+
+CNC machine:
+The MKS GEN 1.4 Board used in the CNC machine uses Marlin to define machine limits,
+endstops, feedrates and more. The Marlin bugfix folder attached comes preconfigured for
+this particular machine.
+
+The Marlin-bugfix-2.0.x CNC configuration was edited in Visual Studio code
+And complied with Auto-build Marlin plugin. VScode and Auto-Build Marlin is
+recommended for editing all .h files In the Marlin subfolder and for uploading
+to MKS GEN 1.4 motherboard.
+
+Gcode sender:
+Repetier host is one of the few programs that can connect to the MKS GEN 1.4 board and has lots of configuration settings,
+alternatively use Pronterface to connect and send your Thingname.nc file.
+
+https://www.repetier.com/download-now/
+https://www.pronterface.com/
+
+CAD program:
+Fusion 360 is a program that works excellent as a CAD and CAM program and has built in post processors. Install guffy1234's post processor if you use this alternative.
+There are many free CAD programs available if Fusion 360 is not an option, search the web!
+
+CAM program:
+CAM is used to create toolpaths for your endmill. Fusion 360 has a build in CAM program that has many advanced functions.
+Free programs exist and work for most applications, but lack in options if you intend to make a more complicated cut.
+
+If you intend to use Fusion 360 as CAM program:
+
+Post processor for Fusion 360 CAM that works with marlin:
+https://github.com/guffy1234/mpcnc_posts_processor
+
+To install a local post processor see this installation guide.
+https://knowledge.autodesk.com/support/fusion-360/learn-explore/caas/sfdcarticles/sfdcarticles/How-to-add-a-Post-Processor-to-your-Personal-Posts-in-Fusion-360.html
+
+If you are using guffy1234's Post processor making your .nc files, you might have to edit and remove a bit of start code to remove a probing command.
+This is what the start code should look like
+
+; *** START begin ***
+G90
+G21
+M84 S0
+G92 X0 Y0 Z0
+; *** START end ***
+
+After homing your machine, move all axis to where you want the origin to be on your work piece.
+Upload your Thingname.nc file and (using the modified code above) the machine will automaticly Set zero (using G92 X0 Y0 Z0) and start working from this point.
